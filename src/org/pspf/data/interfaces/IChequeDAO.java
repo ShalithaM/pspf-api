@@ -29,7 +29,12 @@ public interface IChequeDAO {
 	 */
 	List<ChequeModal> getRejectChequeList();
 	
-
+	/**
+	 * change state
+	 * @param state
+	 * @return
+	 */
+	Boolean updateState(int state, String chequeNo);
 
 	
 

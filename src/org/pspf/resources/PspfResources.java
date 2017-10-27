@@ -2,11 +2,15 @@ package org.pspf.resources;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import org.pspf.model.dto.Message;
 import org.pspf.services.PspfService;
 
 import io.swagger.annotations.Api;
@@ -124,6 +128,25 @@ public class PspfResources {
 		PspfService service = new PspfService();
 		
 		return Response.ok(service.getRejectList()).build();
+	}
+	
+	/**
+	 * update state
+	 * @return
+	 */
+	@PUT
+	@Path("/{state}/{cheque_no}")
+	public Response updateState(@PathParam("state") String state, @PathParam("cheque_no") String chequeNo) {
+		
+		PspfService service = new PspfService();
+		boolean isUpdated = service.updateState(state, chequeNo);
+		
+		if(isUpdated){
+			return Response.ok(new Message(Status.OK.getStatusCode(),"update success")).build();
+		}else{
+			return Response.status(Status.BAD_REQUEST).entity(new Message(Status.BAD_REQUEST.getStatusCode(), "update failed")).build();
+		}
+
 	}
 
 }
