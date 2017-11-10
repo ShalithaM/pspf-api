@@ -127,7 +127,7 @@ public class PspfResources {
 		
 		PspfService service = new PspfService();
 		
-		return Response.ok(service.getRejectList()).build();
+		return Response.ok(service.getAllListByState("reject")).build();
 	}
 	
 	/**

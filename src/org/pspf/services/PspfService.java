@@ -49,6 +49,8 @@ public class PspfService {
 		int state = 0;
 		if (stateType == "pending") {
 			state = 100;
+		} else if (stateType == "reject") {
+			state = 201;
 		} else if (stateType == "received") {
 			state = 200;
 		} else if (stateType == "toBank") {
@@ -123,6 +125,8 @@ public class PspfService {
 		IChequeDAO dao = new ChequeDao();
 		if (stateType.equals("pending")) {
 			state = 100;
+		} else if (stateType.equals("reject")) {
+			state = 201;
 		} else if (stateType.equals("received")) {
 			state = 200;
 		} else if (stateType.equals("toBank")) {
